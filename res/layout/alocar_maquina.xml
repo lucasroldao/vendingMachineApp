@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.vendingmachine.activity.AlocarMaquinaActivity" >
+
+	<RelativeLayout
+	    android:id="@+id/llabove"
+	    android:layout_width="match_parent"
+	    android:layout_height="100dp"
+	    android:background="@color/blue">
+
+	    <TextView
+	        android:id="@+id/txtMaquina"
+	        android:layout_width="wrap_content"
+	        android:layout_height="40dp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:text="Alocação"
+	        android:textColor="@color/Black"
+	        android:textSize="30sp" />
+
+	</RelativeLayout>
+    
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/llabove"
+	    android:orientation="vertical">
+	
+	    <TextView
+	        android:id="@+id/textClienteAloc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="10dp"
+	        android:text="Cliente"
+	        android:textStyle="bold"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <TextView
+	        android:id="@+id/textNomeClienteAloc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="Nome do cliente"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Grey" />
+	
+	    <TextView
+	        android:id="@+id/textEnderecoClienteAloc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="Endereco do cliente"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Grey" />
+	    
+	     <TextView
+	        android:id="@+id/textNumero"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="Número"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Grey" />
+	        
+	     <TextView
+	        android:id="@+id/textTelefone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="Telefone"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Grey" />
+	
+	    <TextView
+	        android:id="@+id/textMaquinaAloc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dp"
+	        android:layout_marginStart="10dp"
+	        android:text="@string/maquina"
+	        android:textStyle="bold"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	    <TextView
+	        android:id="@+id/descricaoMaquinaAloc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="@string/codigo_da_maquina"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Grey" />
+	
+	    <TextView
+	        android:id="@+id/modeloMaquina"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="@string/tipo_da_maquina"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Grey" />
+	    
+	    <TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="30dp"
+	        android:text="Data solicitação"
+	        android:textStyle="bold"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Black" />
+	    
+	    <TextView
+	        android:id="@+id/dataAlocacao"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="10/05/2015"
+	        android:textStyle="bold"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/Black" />
+    
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirmaAlocacaoMaquina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/botao_operacoes"
+        android:text="Alocar máquina" />
+
+</RelativeLayout>

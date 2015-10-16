@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".RelativeLayoutAndroidExample" >
+
+    <TextView
+        android:id="@+id/textMaquina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/maquina"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/descricaoMaquina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textMaquina"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/codigo_da_maquina"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#808080" />
+
+    <TextView
+        android:id="@+id/tipoMaquina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descricaoMaquina"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/tipo_da_maquina"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#808080" />
+
+    <TextView
+        android:id="@+id/textProdutos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tipoMaquina"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/produtos_alocados"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ListView
+        android:id="@+id/listaProdutos"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textProdutos"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/botao_operacoes" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/ValorTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textValorTotal"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_toEndOf="@+id/textValorTotal"
+        android:layout_toRightOf="@+id/textValorTotal"
+        android:text="500"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#00FF00" />
+
+    <Button
+        android:id="@+id/fecharMaquina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/botao_operacoes"
+        android:text="@string/fecharMaquina" />
+
+    <TextView
+        android:id="@+id/textValorTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fecharMaquina"
+        android:layout_alignLeft="@+id/fecharMaquina"
+        android:layout_marginBottom="26dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/valorTotal"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

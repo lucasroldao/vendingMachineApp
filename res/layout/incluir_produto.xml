@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="br.com.vendingmachine.activity.IncluirProdutoActivity" >
+
+    <TextView
+        android:id="@+id/textProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="14dp"
+        android:text="Descrição"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/spinnerProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textProduto"
+        android:layout_below="@+id/textProduto" />
+
+    <TextView
+        android:id="@+id/textQuantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinnerProdutos"
+        android:layout_marginTop="120dp"
+        android:text="@string/quantidade"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/quantidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textQuantidade"
+        android:layout_below="@+id/textQuantidade"
+        android:inputType="number"
+        android:maxLength="5"
+        android:width="150dp" />
+
+    <TextView
+        android:id="@+id/textValorUnitario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/quantidade"
+        android:layout_below="@+id/quantidade"
+        android:text="@string/valorUnitario"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/valorUnitario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textValorUnitario"
+        android:layout_below="@+id/textValorUnitario"
+        android:enabled="false"
+        android:width="150dp" />
+    
+    <TextView 
+        android:id="@+id/txtValorVenda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valor venda"
+        android:layout_alignStart="@+id/valorUnitario"
+        android:layout_below="@+id/valorUnitario"
+        android:width="150dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+    
+    <EditText
+        android:id="@+id/valorVenda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtValorVenda"
+        android:layout_below="@+id/txtValorVenda"
+        android:enabled="false"
+        android:width="150dp" />
+    
+    <TextView
+        android:id="@+id/textTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/valorVenda"
+        android:layout_alignStart="@+id/valorVenda"
+        android:layout_below="@+id/valorVenda"
+        android:text="@string/total"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textTotal"
+        android:layout_alignStart="@+id/textTotal"
+        android:layout_below="@+id/textTotal"
+		android:enabled="false"
+        android:maxLength="5"
+        android:width="150dp" />
+    
+    <Button 
+        android:id="@+id/botaoAdicionarProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Produto"
+        android:background="@drawable/botao_operacoes"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

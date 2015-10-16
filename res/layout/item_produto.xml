@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <TextView
+        android:id="@+id/textItemDescricao" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/descricao"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        />
+
+    
+    <TextView 
+        android:id="@+id/textItemValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textItemDescricao"
+        android:layout_alignStart="@+id/textItemDescricao"
+        android:text="@string/valorUnitario"
+        android:layout_marginTop="3dp"
+		android:textStyle="bold"
+        />
+    
+     <TextView 
+        android:id="@+id/textItemPreco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor"
+        android:layout_toEndOf="@+id/textItemValor"
+        android:layout_alignBaseline="@+id/textItemValor"
+        android:layout_marginTop="37dp"
+        android:layout_marginStart="5dp"
+        />
+    
+    <TextView 
+        android:id="@+id/textItemValorVendido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textItemValor"
+        android:layout_alignStart="@+id/textItemValor"
+        android:text="@string/valor_vendido"
+        android:layout_marginTop="3dp"
+        android:textStyle="bold"
+        />
+    
+    <TextView 
+        android:id="@+id/textItemPrecoVenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor venda"
+        android:layout_toEndOf="@+id/textItemValorVendido"
+        android:layout_alignBaseline="@+id/textItemValorVendido"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
+        />
+    
+     <TextView 
+        android:id="@+id/txtQuantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textItemValorVendido"
+        android:layout_alignStart="@+id/textItemValorVendido"
+        android:text="Quantidade:"
+        android:layout_marginTop="3dp"
+        android:textStyle="bold"
+        />
+     
+     <TextView 
+        android:id="@+id/textItemQuantidadeProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:layout_toEndOf="@+id/txtQuantidade"
+        android:layout_alignBaseline="@+id/txtQuantidade"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
+        />
+
+     <TextView 
+        android:id="@+id/txtTotalProd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtQuantidade"
+        android:layout_alignStart="@+id/txtQuantidade"
+        android:text="Valor total:"
+        android:layout_marginTop="3dp"
+        android:textStyle="bold"
+        />
+     
+     <TextView 
+        android:id="@+id/textItemTotalProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textColor="@color/Red"
+        android:layout_toEndOf="@+id/txtTotalProd"
+        android:layout_alignBaseline="@+id/txtTotalProd"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="5dp"
+        android:layout_below="@+id/textItemQuantidadeProduto"
+        />
+
+</RelativeLayout>
