@@ -34,19 +34,12 @@
         </activity>
         <activity
             android:name=".AbrirMaquinaActivity" >
-
-            <!--
-            <intent-filter>
-	             <action android:name="android.intent.action.MAIN" />
-	             <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
         <activity
             android:name=".FecharMaquinaActivity" >
         </activity>
         <activity
-            android:name=".ManutencaoActivity">
+            android:name=".InformarRecolhimentoActivity">
         </activity>
         <activity
             android:name=".OperacoesActivity" >
@@ -62,6 +55,15 @@
         </activity>
         <activity
             android:name=".AdicionaProdutoActivity">
+        </activity>
+        <activity 
+            android:name=".ListaMaquinasPendentesDesalocaActivity">
+        </activity>
+        <activity 
+            android:name=".DesalocarMaquinaActivity">
+        </activity>
+        <activity 
+            android:name="AdicionaProdutoFechamentoActivity">
         </activity>
     </application>
 

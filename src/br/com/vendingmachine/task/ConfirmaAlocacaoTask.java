@@ -1,30 +1,17 @@
 package br.com.vendingmachine.task;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
-import br.com.vendingmachine.activity.AlocarMaquinaActivity;
-import br.com.vendingmachine.activity.ListaMaquinasPendentesActivity;
-import br.com.vendingmachine.activity.OperacoesActivity;
-import br.com.vendingmachine.domain.Alocacao;
-import br.com.vendingmachine.domain.Produto;
-import br.com.vendingmachine.util.AlocacaoInterface;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
-
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
+import br.com.vendingmachine.domain.Alocacao;
+import br.com.vendingmachine.util.AlocacaoInterface;
 
 public class ConfirmaAlocacaoTask extends AsyncTask<Void, Void, Integer> {
 
@@ -32,6 +19,7 @@ public class ConfirmaAlocacaoTask extends AsyncTask<Void, Void, Integer> {
 	private ProgressDialog pDialog;
 	private Alocacao alocacao;
 	private AlocacaoInterface ai;
+	private final static int TIME_OUT = 5000;
 	
 	public ConfirmaAlocacaoTask(Context context, AlocacaoInterface ai, Alocacao alocacao) {
 		this.context = context;
@@ -56,6 +44,8 @@ public class ConfirmaAlocacaoTask extends AsyncTask<Void, Void, Integer> {
 			
 			URL url = new URL(urlServer);
 			urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setConnectTimeout(TIME_OUT);
+			urlConnection.setReadTimeout(TIME_OUT);
 			urlConnection.setRequestMethod("POST");
 			urlConnection.connect();
 			codigo = urlConnection.getResponseCode();
@@ -75,7 +65,15 @@ public class ConfirmaAlocacaoTask extends AsyncTask<Void, Void, Integer> {
 		if (codigo == HttpURLConnection.HTTP_OK) {
 			Toast.makeText(context, "Alocação confirmada com sucesso!", Toast.LENGTH_LONG).show();
 			ai.carregaTelaOperacoes();
-		} else {
+		} 
+		else if(codigo == HttpURLConnection.HTTP_INTERNAL_ERROR){
+			AlertDialog.Builder builder = new AlertDialog.Builder(context)
+			.setTitle("Erro")
+			.setMessage("Erro ao confirmar alocação")
+			.setPositiveButton("OK", null);
+			builder.create().show();
+		} 
+		else {
 			Toast.makeText(context, "Erro ao confirmar alocação.", Toast.LENGTH_LONG).show();
 		}
 	}

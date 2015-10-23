@@ -102,6 +102,15 @@ public class ListaClienteTask extends AsyncTask<Void, Void, List<Cliente>> {
 	@Override
 	protected void onPostExecute(List<Cliente> listaClientes) {
 		pDialog.dismiss();
-		li.carregaLista(listaClientes);
+		if(codigo == HttpURLConnection.HTTP_OK){
+			li.carregaLista(listaClientes);
+		}
+		else if(codigo == HttpURLConnection.HTTP_CLIENT_TIMEOUT){
+			AlertDialog.Builder builder = new AlertDialog.Builder(context)
+			.setTitle("Erro")
+			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
+			.setPositiveButton("OK", null);
+			builder.create().show();
+		} 
 	}
 }

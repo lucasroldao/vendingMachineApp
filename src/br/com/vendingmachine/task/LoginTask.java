@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 
 import android.app.Activity;
@@ -16,12 +15,8 @@ import android.util.JsonReader;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
-import br.com.vendingmachine.activity.LoginActivity;
 import br.com.vendingmachine.activity.OperacoesActivity;
-import br.com.vendingmachine.activity.R;
 
-// http://developer.android.com/reference/android/util/JsonReader.html
-// http://stackoverflow.com/questions/5379247/filenotfoundexception-while-getting-the-inputstream-object-from-httpurlconnectio
 public class LoginTask extends AsyncTask<Integer, Double, Integer> {
 
 	private Activity context;
@@ -116,7 +111,9 @@ public class LoginTask extends AsyncTask<Integer, Double, Integer> {
 		}
 		// Código 408 - Timeout
 		else if (codigo == HttpURLConnection.HTTP_CLIENT_TIMEOUT){
-			Toast.makeText(context,"Falha ao acessar servidor. Verifique sua conexão com a internet.", Toast.LENGTH_LONG).show();
+			Toast.makeText(context,"Falha ao acessar servidor. Verifique sua conexão com a internet.", Toast.LENGTH_SHORT).show();
+		} else if (codigo == HttpURLConnection.HTTP_UNAUTHORIZED){
+			Toast.makeText(context,"O tipo de perfil do usuário informado não corresponde ao tipo de perfil operador.", Toast.LENGTH_LONG).show();
 		}
 	}
 }

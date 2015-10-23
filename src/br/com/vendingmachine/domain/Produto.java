@@ -21,6 +21,15 @@ public class Produto implements Serializable {
 	private Integer quantidade;
 	@Expose(deserialize = false)
 	private Double valorTotal;
+	@Expose(deserialize = false,serialize = false)
+	private Double valorRetirado;
+	
+	public Double getValorRetirado() {
+		return valorRetirado;
+	}
+	public void setValorRetirado(Double valorRetirado) {
+		this.valorRetirado = valorRetirado;
+	}
 	
 	public String getDescricao() {
 		return descricao;

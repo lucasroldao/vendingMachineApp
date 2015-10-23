@@ -14,11 +14,15 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import br.com.vendingmachine.activity.OperacoesActivity;
+import br.com.vendingmachine.activity.OperacoesMaquinaActivity;
 import br.com.vendingmachine.domain.Maquina;
 import br.com.vendingmachine.domain.Produto;
-import br.com.vendingmachine.util.AbrirMaquinaInterface;
+import br.com.vendingmachine.util.MaquinaInterface;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,17 +31,18 @@ import com.google.gson.reflect.TypeToken;
 public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produto>> {
 	
 	private static final int TIME_OUT = 5000;
-	private Maquina maquinaParaAbertura;
-	private AbrirMaquinaInterface ami;
+	private Maquina maquina;
+	private MaquinaInterface ami;
 	private Context context;
 	private Dialog pDialog;
+	private int codigo;
 
 	public ObtemTipoProdutoTask(Context context,
-			AbrirMaquinaInterface ami,
-			Maquina maquinaParaAbertura) {
+			MaquinaInterface ami,
+			Maquina maquina) {
 		this.context = context;
 		this.ami = ami;
-		this.maquinaParaAbertura = maquinaParaAbertura;
+		this.maquina = maquina;
 	}
 	
 	@Override
@@ -48,7 +53,7 @@ public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produt
 	@Override
 	
 	protected ArrayList<Produto> doInBackground(Void... params) {
-		String urlServer = "http://servidorprincipal.net/vendingmachine/rest/maquinas/" + maquinaParaAbertura.getId() + "/produtos";
+		String urlServer = "http://servidorprincipal.net/vendingmachine/rest/maquinas/" + maquina.getId() + "/produtos";
 		ArrayList<Produto> produtos = new ArrayList<Produto>();
 		HttpURLConnection urlConnection = null;
 	    System.setProperty("http.keepAlive", "false");
@@ -61,7 +66,7 @@ public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produt
 	        urlConnection.setRequestMethod("GET");
 	        urlConnection.setRequestProperty("Accept", "application/json");
 	        urlConnection.connect();
-	        int codigo = urlConnection.getResponseCode();
+	        codigo = urlConnection.getResponseCode();
 	        InputStream inputStream = urlConnection.getInputStream();
 	        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 	        
@@ -107,11 +112,27 @@ public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produt
 		pDialog.dismiss();
 		if (listaProdutos.size() > 0) {
 			ami.carregaFormularioProduto(listaProdutos);
-		} else {
+		} 
+		else if(codigo == HttpURLConnection.HTTP_CLIENT_TIMEOUT){
+			AlertDialog.Builder builder = new AlertDialog.Builder(context)
+			.setTitle("Erro")
+			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
+			.setPositiveButton("OK", null);
+			builder.create().show();
+		} 
+		else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
 					.setTitle("Erro")
 					.setMessage("Não foi possível carregar as informações!!")
-					.setPositiveButton("OK", null);
+					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Intent intent = new Intent(context,OperacoesMaquinaActivity.class);
+							intent.putExtra("Maquina", maquina);
+							context.startActivity(intent);
+						}
+					});
 			builder.create().show();
 		}
 	}

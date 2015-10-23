@@ -20,6 +20,7 @@ public class OperacoesActivity extends Activity {
 		
 		Button botaoGerenciar = (Button) findViewById(R.id.botaoGerenciar);
 		Button botaoAlocar = (Button) findViewById(R.id.botaoAlocar);
+		Button botaoDesalocar = (Button) findViewById(R.id.botaoDesalocar);
 		
 		botaoGerenciar.setOnClickListener(new OnClickListener() {
 			
@@ -38,6 +39,17 @@ public class OperacoesActivity extends Activity {
 			public void onClick(View v) {
 				Intent irParaListaMaquinasNaoAlocadas = new Intent(OperacoesActivity.this,ListaMaquinasPendentesActivity.class);
 				startActivity(irParaListaMaquinasNaoAlocadas);
+				finish();
+				
+			}
+		});
+		
+		botaoDesalocar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent irParaListaMaquinasDesalocadas = new Intent(OperacoesActivity.this,ListaMaquinasPendentesDesalocaActivity.class);
+				startActivity(irParaListaMaquinasDesalocadas);
 				finish();
 				
 			}

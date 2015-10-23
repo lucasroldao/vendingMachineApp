@@ -24,6 +24,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Red=0x7f040003;
         public static final int black_overlay=0x7f040000;
         public static final int blue=0x7f040001;
+        public static final int green=0x7f040005;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -46,42 +47,44 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int ValorTotal=0x7f09001d;
-        public static final int action_settings=0x7f09005b;
+        public static final int action_settings=0x7f09005e;
         public static final int adicionarProduto=0x7f090005;
-        public static final int botaoAbrir=0x7f090058;
+        public static final int botaoAbrir=0x7f090053;
         public static final int botaoAdicionarProduto=0x7f090024;
-        public static final int botaoAlocar=0x7f090056;
-        public static final int botaoDesalocar=0x7f090057;
-        public static final int botaoFechar=0x7f090059;
-        public static final int botaoGerenciar=0x7f090055;
-        public static final int botaoManutencao=0x7f09005a;
-        public static final int botaologin=0x7f09004c;
+        public static final int botaoAlocar=0x7f090051;
+        public static final int botaoDesalocar=0x7f090052;
+        public static final int botaoFechar=0x7f090054;
+        public static final int botaoGerenciar=0x7f090050;
+        public static final int botaoManutencao=0x7f090055;
+        public static final int botaologin=0x7f09004d;
         public static final int confirmaAlocacaoMaquina=0x7f090017;
+        public static final int confirmaRecolhimentoMaquina=0x7f09005d;
         public static final int dataAlocacao=0x7f090016;
+        public static final int dataRecolhimento=0x7f09005c;
         public static final int descricaoMaquina=0x7f090019;
         public static final int descricaoMaquinaAloc=0x7f090014;
+        public static final int descricaoMaquinaRecolhimento=0x7f09005a;
         public static final int emitirDespesa=0x7f090007;
-        public static final int emitirSolicitacaoManutencao=0x7f090054;
         public static final int fecharMaquina=0x7f09001f;
         public static final int listaProdutos=0x7f09001c;
         public static final int lista_alocacoes=0x7f090049;
         public static final int lista_cliente=0x7f09004a;
-        public static final int lista_maquinas=0x7f09004b;
+        public static final int lista_desalocacoes=0x7f09004b;
+        public static final int lista_maquinas=0x7f09004c;
         public static final int lista_produtos=0x7f090000;
         public static final int llabove=0x7f09000d;
         public static final int llbelow=0x7f090002;
         public static final int llbottom=0x7f090003;
         public static final int llmidle=0x7f090001;
-        public static final int login=0x7f09004e;
+        public static final int login=0x7f09004f;
         public static final int modeloMaquina=0x7f090015;
+        public static final int modeloMaquinaRecolhimento=0x7f09005b;
         public static final int quantidade=0x7f090027;
-        public static final int senha=0x7f09004d;
+        public static final int senha=0x7f09004e;
         public static final int site=0x7f090021;
-        public static final int spinnerMotivos=0x7f090053;
         public static final int spinnerProdutos=0x7f090020;
-        public static final int textCliente=0x7f09004f;
         public static final int textClienteAloc=0x7f09000e;
-        public static final int textEnderecoCliente=0x7f090051;
+        public static final int textClienteRecolhimento=0x7f090057;
         public static final int textEnderecoClienteAloc=0x7f090010;
         public static final int textItemDescricao=0x7f09002d;
         public static final int textItemPreco=0x7f09002f;
@@ -94,9 +97,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textLsModeloMaquina=0x7f090048;
         public static final int textMaquina=0x7f090018;
         public static final int textMaquinaAloc=0x7f090013;
-        public static final int textMotivo=0x7f090052;
-        public static final int textNomeCliente=0x7f090050;
+        public static final int textMaquinaRecolhimento=0x7f090059;
         public static final int textNomeClienteAloc=0x7f09000f;
+        public static final int textNomeClienteRecolhimento=0x7f090058;
         public static final int textNumero=0x7f090011;
         public static final int textProduto=0x7f090025;
         public static final int textProdutos=0x7f09001b;
@@ -123,6 +126,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txtDataSolicitacao=0x7f090037;
         public static final int txtEndereco=0x7f09003b;
         public static final int txtMaquina=0x7f090008;
+        public static final int txtMaquinaRecolhimento=0x7f090056;
         public static final int txtModelo=0x7f09000b;
         public static final int txtModeloMaquina=0x7f09000c;
         public static final int txtNomeCliente=0x7f090039;
@@ -149,11 +153,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int layout_ls_maquina=0x7f030007;
         public static final int lista_alocacao=0x7f030008;
         public static final int lista_cliente=0x7f030009;
-        public static final int lista_maquina=0x7f03000a;
-        public static final int login=0x7f03000b;
-        public static final int manutencao=0x7f03000c;
+        public static final int lista_desalocacao=0x7f03000a;
+        public static final int lista_maquina=0x7f03000b;
+        public static final int login=0x7f03000c;
         public static final int operacoes=0x7f03000d;
         public static final int operacoesmaquina=0x7f03000e;
+        public static final int recolhe_maquina=0x7f03000f;
     }
     public static final class menu {
         public static final int abrir_maquina=0x7f080000;

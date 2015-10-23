@@ -27,11 +27,11 @@ import br.com.vendingmachine.adapter.ProdutoAdapter;
 import br.com.vendingmachine.domain.Maquina;
 import br.com.vendingmachine.domain.Produto;
 import br.com.vendingmachine.service.ProdutoService;
-import br.com.vendingmachine.task.EnviaDespesaTask;
+import br.com.vendingmachine.task.GeraFinanceiroTask;
 import br.com.vendingmachine.task.ObtemTipoProdutoTask;
-import br.com.vendingmachine.util.AbrirMaquinaInterface;
+import br.com.vendingmachine.util.MaquinaInterface;
 
-public class AbrirMaquinaActivity extends Activity implements AbrirMaquinaInterface{
+public class AbrirMaquinaActivity extends Activity implements MaquinaInterface{
 	ListView listaProdutos;
 	Produto produto;
 	Maquina maquinaParaAbertura;
@@ -60,25 +60,6 @@ public class AbrirMaquinaActivity extends Activity implements AbrirMaquinaInterf
 		listaProdutos = (ListView) findViewById(R.id.lista_produtos);
 		
         registerForContextMenu(listaProdutos);
-        
-        listaProdutos.setOnItemClickListener(new OnItemClickListener(){
-
-			@Override
-			public void onItemClick(AdapterView<?> adapter, View view, int posicao, long id) {
-				
-				//Ir para a tela de formulario para alterar os dados adicionados na lista
-				
-				//Produto ProdutoClicado = (Produto) adapter.getItemAtPosition(posicao);
-				
-				//Intent irParaFormulario = new Intent(AbrirMaquinaActivity.this,AdicionaProdutoActivity.class);
-				
-				//irParaFormulario.putExtra("ProdutoSelecionado", ProdutoClicado);
-				
-				//startActivity(irParaFormulario);
-				
-			}
-        	
-        });
 
         listaProdutos.setOnItemLongClickListener(new OnItemLongClickListener(){
         	
@@ -107,7 +88,7 @@ public class AbrirMaquinaActivity extends Activity implements AbrirMaquinaInterf
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							EnviaDespesaTask enviaDespesaTask = new EnviaDespesaTask(AbrirMaquinaActivity.this,produtos,maquinaParaAbertura);
+							GeraFinanceiroTask enviaDespesaTask = new GeraFinanceiroTask(AbrirMaquinaActivity.this,produtos,maquinaParaAbertura,"A");
 							enviaDespesaTask.execute();
 							finish();
 						}

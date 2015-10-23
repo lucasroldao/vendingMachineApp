@@ -18,7 +18,7 @@ import br.com.vendingmachine.task.ListaMaquinasTask;
 import br.com.vendingmachine.util.ListaMaquinaInterface;
 
 public class ListaMaquinaActivity extends Activity implements ListaMaquinaInterface {
-	
+	private Cliente cliente;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,13 +27,11 @@ public class ListaMaquinaActivity extends Activity implements ListaMaquinaInterf
 		
 		// Recupera o cliente selecionado
 		Intent intent = getIntent();
-		Cliente cliente = (Cliente) intent.getSerializableExtra("Cliente");
-		
+		cliente = (Cliente) intent.getSerializableExtra("Cliente");
 		
 		//Dispara a task
 		ListaMaquinasTask task = new ListaMaquinasTask(this,this,cliente);
 		task.execute();
-		
 	}
 
 	@Override
@@ -54,6 +52,7 @@ public class ListaMaquinaActivity extends Activity implements ListaMaquinaInterf
 				
 				Intent irParaOperacoes = new Intent(ListaMaquinaActivity.this, OperacoesMaquinaActivity.class);
 				irParaOperacoes.putExtra("Maquina",maquinaSelecionada);
+				irParaOperacoes.putExtra("Cliente",cliente);
 				
 				startActivity(irParaOperacoes);
 				

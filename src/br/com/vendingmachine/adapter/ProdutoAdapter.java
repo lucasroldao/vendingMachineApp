@@ -50,13 +50,11 @@ public class ProdutoAdapter extends BaseAdapter{
 		TextView itemValoTotal = (TextView) linha.findViewById(R.id.textItemTotalProduto);
 		TextView itemQuantidade = (TextView) linha.findViewById(R.id.textItemQuantidadeProduto);
 		
-
 		itemDescricao.setText(produto.getDescricao());
 		itemValorUnitario.setText(produto.getValorUnitario().toString());
-		itemValorVendido.setText(produto.getValorUnitario().toString());
+		itemValorVendido.setText(produto.getPrecoVenda().toString());
 		itemValoTotal.setText(produto.getValorTotal().toString());
 		itemQuantidade.setText(produto.getQuantidade().toString());
-		
 		
 		return linha;
 	}

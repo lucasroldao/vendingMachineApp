@@ -17,13 +17,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import br.com.vendingmachine.activity.AbrirMaquinaActivity;
 import br.com.vendingmachine.activity.OperacoesActivity;
 import br.com.vendingmachine.domain.Alocacao;
 import br.com.vendingmachine.util.ListaMaquinaPendenteInterface;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class ListarMaquinasPendentesTask extends AsyncTask<Void, Void, ArrayList<Alocacao>> {
@@ -107,7 +105,8 @@ public class ListarMaquinasPendentesTask extends AsyncTask<Void, Void, ArrayList
 		pDialog.dismiss();
 		if(codigo == HttpURLConnection.HTTP_OK || codigo == HttpURLConnection.HTTP_FORBIDDEN){
 			lmpi.carregaLista(listaalocacao);
-		} else if (codigo == HttpURLConnection.HTTP_INTERNAL_ERROR){
+		} 
+		else if (codigo == HttpURLConnection.HTTP_INTERNAL_ERROR){
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
 			.setTitle("Erro")
 			.setMessage("Não foi possível carregar as solicitações pendentes.")
@@ -120,6 +119,13 @@ public class ListarMaquinasPendentesTask extends AsyncTask<Void, Void, ArrayList
 				}
 			});
 			builder.create().show();
-		}
+		} 
+		else if(codigo == HttpURLConnection.HTTP_CLIENT_TIMEOUT){
+			AlertDialog.Builder builder = new AlertDialog.Builder(context)
+			.setTitle("Erro")
+			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
+			.setPositiveButton("OK", null);
+			builder.create().show();
+		} 
 	}
 }

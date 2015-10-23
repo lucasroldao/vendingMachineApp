@@ -113,6 +113,13 @@ public class ListaMaquinasTask extends AsyncTask<Void, Void, List<Maquina>> {
 			.setPositiveButton("OK", null);
 			builder.create().show();
 		}
+		else if(codigo == HttpURLConnection.HTTP_CLIENT_TIMEOUT){
+			AlertDialog.Builder builder = new AlertDialog.Builder(context)
+			.setTitle("Erro")
+			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
+			.setPositiveButton("OK", null);
+			builder.create().show();
+		} 
 		else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
 					.setTitle("Erro")
@@ -120,6 +127,7 @@ public class ListaMaquinasTask extends AsyncTask<Void, Void, List<Maquina>> {
 					.setPositiveButton("OK", null);
 			builder.create().show();
 			
-		}
+		} 
+
 	}
 }

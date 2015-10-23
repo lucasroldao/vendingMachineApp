@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import br.com.vendingmachine.domain.Cliente;
 import br.com.vendingmachine.domain.Maquina;
 
 public class OperacoesMaquinaActivity extends Activity{
 
-	private Maquina maquina;
+	private static Maquina maquina;
+	private Cliente cliente;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class OperacoesMaquinaActivity extends Activity{
 		// Recupera a maquina selecionada
 		Intent intent = getIntent();
 		maquina = (Maquina) intent.getSerializableExtra("Maquina");
-		
+		cliente = (Cliente) intent.getSerializableExtra("Cliente"); 
 		
 		// Abrir a máquina
 		Button botaoAbrir = (Button) findViewById(R.id.botaoAbrir);
@@ -45,7 +47,7 @@ public class OperacoesMaquinaActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				Intent irParaFecharMaquina = new Intent(OperacoesMaquinaActivity.this,FecharMaquinaActivity.class);
-				
+				irParaFecharMaquina.putExtra("FechaMaquina", maquina);
 				startActivity(irParaFecharMaquina);
 
 			}
@@ -57,8 +59,10 @@ public class OperacoesMaquinaActivity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				Intent irParaFormularioManutencao = new Intent(OperacoesMaquinaActivity.this,ManutencaoActivity.class);
-				startActivity(irParaFormularioManutencao);
+				Intent irParaInformarRecolhimento = new Intent(OperacoesMaquinaActivity.this,InformarRecolhimentoActivity.class);
+				irParaInformarRecolhimento.putExtra("RecolhimentoMaquina", maquina);
+				irParaInformarRecolhimento.putExtra("Cliente", cliente);
+				startActivity(irParaInformarRecolhimento);
 			}
 		});
 	}

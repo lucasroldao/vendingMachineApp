@@ -65,5 +65,6 @@ public class AlocarMaquinaActivity extends Activity implements AlocacaoInterface
 		//Carrega tela de operações
 		Intent irParaOperacao = new Intent(this,OperacoesActivity.class);
 		startActivity(irParaOperacao);
+		finish();
 	}
 }
