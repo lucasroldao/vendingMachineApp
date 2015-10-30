@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import br.com.vendingmachine.domain.Alocacao;
 import br.com.vendingmachine.task.ConfirmaAlocacaoTask;
-import br.com.vendingmachine.util.AlocacaoInterface;
+import br.com.vendingmachine.util.OperacaoInterface;
 
-public class AlocarMaquinaActivity extends Activity implements AlocacaoInterface {
+public class AlocarMaquinaActivity extends Activity implements OperacaoInterface {
 
 	private TextView textNomeClienteAloc;
 	private TextView textEnderecoClienteAloc;

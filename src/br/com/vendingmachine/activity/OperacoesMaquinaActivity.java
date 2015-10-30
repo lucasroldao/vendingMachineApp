@@ -21,10 +21,10 @@ public class OperacoesMaquinaActivity extends Activity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.operacoesmaquina);
 		
-		// Recupera a maquina selecionada
+		// Recupera a maquina e o cliente selecionados
 		Intent intent = getIntent();
 		maquina = (Maquina) intent.getSerializableExtra("Maquina");
-		cliente = (Cliente) intent.getSerializableExtra("Cliente"); 
+		cliente = (Cliente) intent.getSerializableExtra("Cliente");
 		
 		// Abrir a máquina
 		Button botaoAbrir = (Button) findViewById(R.id.botaoAbrir);
@@ -36,6 +36,7 @@ public class OperacoesMaquinaActivity extends Activity{
 
 				Intent IrParaAberturaMaquina = new Intent(OperacoesMaquinaActivity.this, AbrirMaquinaActivity.class);
 				IrParaAberturaMaquina.putExtra("AbreMaquina", maquina);
+				IrParaAberturaMaquina.putExtra("Cliente", cliente);
 				startActivity(IrParaAberturaMaquina);
 			}
 		});
@@ -48,6 +49,7 @@ public class OperacoesMaquinaActivity extends Activity{
 			public void onClick(View v) {
 				Intent irParaFecharMaquina = new Intent(OperacoesMaquinaActivity.this,FecharMaquinaActivity.class);
 				irParaFecharMaquina.putExtra("FechaMaquina", maquina);
+				irParaFecharMaquina.putExtra("Cliente", cliente);
 				startActivity(irParaFecharMaquina);
 
 			}
@@ -65,6 +67,12 @@ public class OperacoesMaquinaActivity extends Activity{
 				startActivity(irParaInformarRecolhimento);
 			}
 		});
+	}
+	
+	@Override
+	protected void onPause() {
+		finish();
+		super.onPause();
 	}
 
 }

@@ -124,7 +124,14 @@ public class ListarMaquinasPendentesTask extends AsyncTask<Void, Void, ArrayList
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
 			.setTitle("Erro")
 			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
-			.setPositiveButton("OK", null);
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(context,OperacoesActivity.class);
+					context.startActivity(intent);
+				}
+			});
 			builder.create().show();
 		} 
 	}

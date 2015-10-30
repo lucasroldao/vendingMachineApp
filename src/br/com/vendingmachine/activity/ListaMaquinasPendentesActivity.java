@@ -62,7 +62,6 @@ public class ListaMaquinasPendentesActivity extends Activity implements ListaMaq
 								AlocarMaquinaActivity.class);
 						
 						irParaFormularioAlocarMaquina.putExtra("Alocacao",alocacaoSelecionada);
-		
 						startActivity(irParaFormularioAlocarMaquina);
 					}
 

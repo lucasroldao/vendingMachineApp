@@ -2,13 +2,16 @@ package br.com.vendingmachine.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import br.com.vendingmachine.adapter.ProdutoAdapter;
+import br.com.vendingmachine.domain.Cliente;
 import br.com.vendingmachine.domain.Maquina;
 import br.com.vendingmachine.domain.Produto;
 import br.com.vendingmachine.service.ProdutoService;
 import br.com.vendingmachine.task.GeraFinanceiroTask;
 import br.com.vendingmachine.task.ObtemTipoProdutoTask;
 import br.com.vendingmachine.util.MaquinaInterface;
+import br.com.vendingmachine.util.OperacaoInterface;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -30,12 +33,13 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-public class FecharMaquinaActivity extends Activity implements MaquinaInterface {
+public class FecharMaquinaActivity extends Activity implements MaquinaInterface,OperacaoInterface {
 	
 	ListView listaProdutos;
 	Produto produto;
 	Maquina maquinaParaFechamento;
 	ProdutoService produtoService;
+	private Cliente cliente;
 	static TextView valorTotalProdutos;
 	
 	@SuppressLint("ResourceAsColor")
@@ -52,13 +56,14 @@ public class FecharMaquinaActivity extends Activity implements MaquinaInterface 
 		
 		Intent intent = getIntent();
 		maquinaParaFechamento = (Maquina) intent.getSerializableExtra("FechaMaquina");
+		cliente = (Cliente) intent.getSerializableExtra("Cliente");
 		
 		txtTitulo.setText("Fechar Máquina");
 		txtCodigoMaquina.setText(maquinaParaFechamento.getCodigo());
 		txtModeloMaquina.setText(maquinaParaFechamento.getModelo());
 		valorTotalProdutos.setTextColor(R.color.Red);
 		
-		ObtemTipoProdutoTask ObtemTipoProdutoTask = new ObtemTipoProdutoTask(this,this,maquinaParaFechamento);
+		ObtemTipoProdutoTask ObtemTipoProdutoTask = new ObtemTipoProdutoTask(this,this,maquinaParaFechamento,cliente);
 		ObtemTipoProdutoTask.execute();
 		
 		listaProdutos = (ListView) findViewById(R.id.lista_produtos);
@@ -92,9 +97,8 @@ public class FecharMaquinaActivity extends Activity implements MaquinaInterface 
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							GeraFinanceiroTask enviaDespesaTask = new GeraFinanceiroTask(FecharMaquinaActivity.this,produtos,maquinaParaFechamento,"F");
+							GeraFinanceiroTask enviaDespesaTask = new GeraFinanceiroTask(FecharMaquinaActivity.this,FecharMaquinaActivity.this,produtos,maquinaParaFechamento,"F");
 							enviaDespesaTask.execute();
-							finish();
 						}
 					})
 					.setNegativeButton("Não",null);
@@ -163,6 +167,15 @@ public class FecharMaquinaActivity extends Activity implements MaquinaInterface 
 	    
 	    ProdutoAdapter adapterProduto = new ProdutoAdapter(produtos,this);
 		listaProdutos.setAdapter(adapterProduto);
+		
+	}
+
+	@Override
+	public void carregaTelaOperacoes() {
+		Intent irParaTelaOperacoes = new Intent(FecharMaquinaActivity.this,
+				OperacoesActivity.class);
+		startActivity(irParaTelaOperacoes);
+		finish();
 		
 	}
 

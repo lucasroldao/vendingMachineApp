@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import br.com.vendingmachine.activity.OperacoesActivity;
 import br.com.vendingmachine.activity.OperacoesMaquinaActivity;
+import br.com.vendingmachine.domain.Cliente;
 import br.com.vendingmachine.domain.Maquina;
 import br.com.vendingmachine.domain.Produto;
 import br.com.vendingmachine.util.MaquinaInterface;
@@ -36,13 +37,13 @@ public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produt
 	private Context context;
 	private Dialog pDialog;
 	private int codigo;
+	private Cliente cliente;
 
-	public ObtemTipoProdutoTask(Context context,
-			MaquinaInterface ami,
-			Maquina maquina) {
+	public ObtemTipoProdutoTask(Context context,MaquinaInterface ami,Maquina maquina,Cliente cliente) {
 		this.context = context;
 		this.ami = ami;
 		this.maquina = maquina;
+		this.cliente = cliente;
 	}
 	
 	@Override
@@ -117,7 +118,15 @@ public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produt
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
 			.setTitle("Erro")
 			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
-			.setPositiveButton("OK", null);
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(context,OperacoesMaquinaActivity.class);
+					intent.putExtra("Maquina", maquina);
+					context.startActivity(intent);
+				}
+			});
 			builder.create().show();
 		} 
 		else {
@@ -130,6 +139,7 @@ public class ObtemTipoProdutoTask extends AsyncTask<Void, Void, ArrayList<Produt
 						public void onClick(DialogInterface dialog, int which) {
 							Intent intent = new Intent(context,OperacoesMaquinaActivity.class);
 							intent.putExtra("Maquina", maquina);
+							intent.putExtra("Cliente", cliente);
 							context.startActivity(intent);
 						}
 					});

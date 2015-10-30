@@ -14,8 +14,11 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import br.com.vendingmachine.activity.OperacoesActivity;
 import br.com.vendingmachine.domain.Cliente;
 import br.com.vendingmachine.domain.Maquina;
 import br.com.vendingmachine.util.ListaMaquinaInterface;
@@ -103,31 +106,37 @@ public class ListaMaquinasTask extends AsyncTask<Void, Void, List<Maquina>> {
 	@Override
 	protected void onPostExecute(List<Maquina> listaMaquinas) {
 		pDialog.dismiss();
-		if (listaMaquinas.size() > 0) {
+		
+		if((codigo == HttpURLConnection.HTTP_OK || codigo == HttpURLConnection.HTTP_INTERNAL_ERROR)){
 			lmi.carregaLista(listaMaquinas);
-		}
-		else if (codigo == HttpURLConnection.HTTP_INTERNAL_ERROR ){
-			AlertDialog.Builder builder = new AlertDialog.Builder(context)
-			.setTitle("Erro")
-			.setMessage("O cliente selecionado não possui máquinas alocadas")
-			.setPositiveButton("OK", null);
-			builder.create().show();
 		}
 		else if(codigo == HttpURLConnection.HTTP_CLIENT_TIMEOUT){
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
 			.setTitle("Erro")
 			.setMessage("Não foi possível acessar o servidor. Verifique sua conexão.")
-			.setPositiveButton("OK", null);
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(context,OperacoesActivity.class);
+					context.startActivity(intent);
+				}
+			});
 			builder.create().show();
 		} 
 		else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(context)
-					.setTitle("Erro")
-					.setMessage("Não foi possível acessar as informações!!")
-					.setPositiveButton("OK", null);
+			.setTitle("Erro")
+			.setMessage("Não foi possível acessar as informações!!")
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent intent = new Intent(context,OperacoesActivity.class);
+					context.startActivity(intent);
+				}
+			});
 			builder.create().show();
-			
 		} 
-
 	}
 }

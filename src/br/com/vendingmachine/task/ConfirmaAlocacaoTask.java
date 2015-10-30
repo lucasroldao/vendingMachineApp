@@ -11,17 +11,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import br.com.vendingmachine.domain.Alocacao;
-import br.com.vendingmachine.util.AlocacaoInterface;
+import br.com.vendingmachine.util.OperacaoInterface;
 
 public class ConfirmaAlocacaoTask extends AsyncTask<Void, Void, Integer> {
 
 	private Context context;
 	private ProgressDialog pDialog;
 	private Alocacao alocacao;
-	private AlocacaoInterface ai;
+	private OperacaoInterface ai;
 	private final static int TIME_OUT = 5000;
 	
-	public ConfirmaAlocacaoTask(Context context, AlocacaoInterface ai, Alocacao alocacao) {
+	public ConfirmaAlocacaoTask(Context context, OperacaoInterface ai, Alocacao alocacao) {
 		this.context = context;
 		this.alocacao = alocacao;
 		this.ai = ai;

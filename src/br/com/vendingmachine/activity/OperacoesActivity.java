@@ -15,7 +15,6 @@ public class OperacoesActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.operacoes);
 		
 		Button botaoGerenciar = (Button) findViewById(R.id.botaoGerenciar);
@@ -27,7 +26,6 @@ public class OperacoesActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent irParaListaclientes = new Intent(OperacoesActivity.this,ListaClienteActivity.class);
-				
 				startActivity(irParaListaclientes);
 				
 			}
@@ -39,7 +37,6 @@ public class OperacoesActivity extends Activity {
 			public void onClick(View v) {
 				Intent irParaListaMaquinasNaoAlocadas = new Intent(OperacoesActivity.this,ListaMaquinasPendentesActivity.class);
 				startActivity(irParaListaMaquinasNaoAlocadas);
-				finish();
 				
 			}
 		});
@@ -50,11 +47,16 @@ public class OperacoesActivity extends Activity {
 			public void onClick(View v) {
 				Intent irParaListaMaquinasDesalocadas = new Intent(OperacoesActivity.this,ListaMaquinasPendentesDesalocaActivity.class);
 				startActivity(irParaListaMaquinasDesalocadas);
-				finish();
 				
 			}
 		});
 		
+	}
+	
+	@Override
+	protected void onPause() {
+		finish();
+		super.onPause();
 	}
 
 }

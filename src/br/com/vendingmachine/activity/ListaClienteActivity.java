@@ -51,7 +51,6 @@ public class ListaClienteActivity extends Activity implements ListaInterface {
 								ListaClienteActivity.this, ListaMaquinaActivity.class);
 						
 						irParaListarMaquinas.putExtra("Cliente",clienteSelecionado);
-		
 						startActivity(irParaListarMaquinas);
 					}
 	

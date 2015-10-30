@@ -24,25 +24,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.com.vendingmachine.adapter.ProdutoAdapter;
+import br.com.vendingmachine.domain.Cliente;
 import br.com.vendingmachine.domain.Maquina;
 import br.com.vendingmachine.domain.Produto;
 import br.com.vendingmachine.service.ProdutoService;
 import br.com.vendingmachine.task.GeraFinanceiroTask;
 import br.com.vendingmachine.task.ObtemTipoProdutoTask;
+import br.com.vendingmachine.util.OperacaoInterface;
 import br.com.vendingmachine.util.MaquinaInterface;
 
-public class AbrirMaquinaActivity extends Activity implements MaquinaInterface{
+public class AbrirMaquinaActivity extends Activity implements MaquinaInterface,OperacaoInterface{
 	ListView listaProdutos;
 	Produto produto;
 	Maquina maquinaParaAbertura;
 	ProdutoService produtoService;
-	static TextView valorTotalProdutos;
+	private Cliente cliente;
+	private static TextView valorTotalProdutos;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.abrir_maquina);
+		
 		TextView txtCodigoMaquina = (TextView) findViewById(R.id.txtCodigoMaquina);
 		TextView txtModeloMaquina = (TextView) findViewById(R.id.txtModeloMaquina);
 		valorTotalProdutos = (TextView) findViewById(R.id.valorTotalProdutos);
@@ -50,11 +54,12 @@ public class AbrirMaquinaActivity extends Activity implements MaquinaInterface{
 		
 		Intent intent = getIntent();
 		maquinaParaAbertura = (Maquina) intent.getSerializableExtra("AbreMaquina");
+		cliente = (Cliente) intent.getSerializableExtra("Cliente");
 		
 		txtCodigoMaquina.setText(maquinaParaAbertura.getCodigo());
 		txtModeloMaquina.setText(maquinaParaAbertura.getModelo());
 		
-		ObtemTipoProdutoTask ObtemTipoProdutoTask = new ObtemTipoProdutoTask(this,this,maquinaParaAbertura);
+		ObtemTipoProdutoTask ObtemTipoProdutoTask = new ObtemTipoProdutoTask(this,this,maquinaParaAbertura,cliente);
 		ObtemTipoProdutoTask.execute();
 		
 		listaProdutos = (ListView) findViewById(R.id.lista_produtos);
@@ -66,7 +71,7 @@ public class AbrirMaquinaActivity extends Activity implements MaquinaInterface{
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapter, View view, int posicao, long id) {
 				
-				//Guardo o aluno selecionado
+				//Guardo o produto selecionado
 				produto = (Produto) adapter.getItemAtPosition(posicao);
 				
 				return false;
@@ -88,9 +93,8 @@ public class AbrirMaquinaActivity extends Activity implements MaquinaInterface{
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							GeraFinanceiroTask enviaDespesaTask = new GeraFinanceiroTask(AbrirMaquinaActivity.this,produtos,maquinaParaAbertura,"A");
+							GeraFinanceiroTask enviaDespesaTask = new GeraFinanceiroTask(AbrirMaquinaActivity.this,AbrirMaquinaActivity.this,produtos,maquinaParaAbertura,"A");
 							enviaDespesaTask.execute();
-							finish();
 						}
 					})
 					.setNegativeButton("Não",null);
@@ -160,6 +164,14 @@ public class AbrirMaquinaActivity extends Activity implements MaquinaInterface{
 	    ProdutoAdapter adapterProduto = new ProdutoAdapter(produtos,this);
 		listaProdutos.setAdapter(adapterProduto);
 		
+	}
+
+	@Override
+	public void carregaTelaOperacoes() {
+		Intent irParaTelaOperacoes = new Intent(AbrirMaquinaActivity.this,
+				OperacoesActivity.class);
+		startActivity(irParaTelaOperacoes);
+		finish();
 	}
 
 }
